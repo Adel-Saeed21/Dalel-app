@@ -8,19 +8,33 @@ class OnBoardingWidgetBody extends StatelessWidget {
   final PageController _controller = PageController();
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return SizedBox(
+      height: 500,
+
       child: PageView.builder(
+        physics: const BouncingScrollPhysics(),
         controller: _controller,
         itemBuilder: (context, index) {
           return Column(
             children: [
-              Image.asset(Assets.assetsImagesOnBoarding1),
+              Container(
+                height: 290,
+                width: 343,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(Assets.assetsImagesOnBoarding1),
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ),
               const SizedBox(height: 24),
               CustomSmoothPageIndicator(controller: _controller),
               const SizedBox(height: 32),
 
               Text(
                 "Exploure The History  with Dalel in smart way ",
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
                 style: AppTextStyle.poppins500Style24.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -31,6 +45,8 @@ class OnBoardingWidgetBody extends StatelessWidget {
               const Text(
                 "test run project",
                 style: AppTextStyle.poppins300Style16,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
               ),
             ],
           );

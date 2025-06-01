@@ -14,15 +14,12 @@ class SpalshView extends StatefulWidget {
 
 class _SpalshViewState extends State<SpalshView> {
   @override
-  void initState()  {
+  void initState() {
     delayedNavigate(context);
 
     super.initState();
   }
 
- 
-
- 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,8 +30,8 @@ class _SpalshViewState extends State<SpalshView> {
   }
 }
 
- void delayedNavigate(BuildContext context) {
-    Future.delayed(const Duration(seconds: 2), () {
-      customNavigate(context,'/onBoarding');
-    });
-  }
+void delayedNavigate(BuildContext context) {
+  Future.delayed(const Duration(seconds: 2), () {
+    customNavigateReplace(context, '/onBoarding');
+  });
+}
