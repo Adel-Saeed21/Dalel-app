@@ -1,7 +1,8 @@
-import 'package:dalel/core/utils/app_colors.dart';
+import 'package:dalel/core/database/cache/cache_helper.dart';
 import 'package:dalel/core/utils/app_strings.dart';
 import 'package:dalel/core/widgets/custom_button.dart';
 import 'package:dalel/features/on_boarding/data/models/on_boarding_model.dart';
+import 'package:dalel/features/on_boarding/presentation/views/widgets/auth_on_boarding_page.dart';
 import 'package:dalel/features/on_boarding/presentation/views/widgets/custom_nav_bar.dart';
 import 'package:dalel/features/on_boarding/presentation/views/widgets/on_boarding_widget_view.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,19 @@ class _OnBoardingViewState extends State<OnBoardingView> {
             physics: const BouncingScrollPhysics(),
             children: [
               const SizedBox(height: 40),
-              const CustomNavBar(),
+              index == onBoardingData.length - 1
+                  ? const SizedBox()
+                  : CustomNavBar(
+                    onPressed: () {
+                      CacheHelper().saveData(
+                        key: "isOnBoardingVisited",
+                        value: true,
+                      );
+                      setState(() {
+                        _controller.jumpToPage(onBoardingData.length - 1);
+                      });
+                    },
+                  ),
               OnBoardingWidgetBody(
                 controller: _controller,
                 onPageChanged: (p0) {
@@ -52,27 +65,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                       ),
                     ],
                   )
-                  : Column(
-                    children: [
-                     const SizedBox(height: 150),
-                      CustomButton(
-                        text: "Sign In",
-                        color: AppColors.primaryColor,
-                        onPressed: () {
-                          debugPrint("Sign In pressed!");
-                        },
-                      ),
-
-                    const  SizedBox(height: 20),
-                       CustomButton(
-                        text: "Sign up",
-                        color: AppColors.primaryColor,
-                        onPressed: () {
-                          debugPrint("Sign In pressed!");
-                        },
-                      ),
-                    ],
-                  ),
+                  : const AuthOnBoardingPage(),
               const SizedBox(height: 17),
             ],
           ),

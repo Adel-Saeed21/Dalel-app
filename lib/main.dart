@@ -1,8 +1,11 @@
+import 'package:dalel/core/database/cache/cache_helper.dart';
 import 'package:dalel/core/utils/app_colors.dart';
 import 'package:dalel/core/utils/app_route.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await CacheHelper().init();
   runApp(const MyApp());
 }
 
@@ -13,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      theme: ThemeData(scaffoldBackgroundColor:AppColors.offWhite),
+      theme: ThemeData(scaffoldBackgroundColor: AppColors.offWhite),
       debugShowCheckedModeBanner: false,
       routerConfig: route,
     );

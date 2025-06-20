@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:dalel/core/database/cache/cache_helper.dart';
 import 'package:dalel/core/functions/navigation.dart';
 import 'package:dalel/core/utils/app_strings.dart';
 import 'package:dalel/core/utils/app_text_style.dart';
@@ -15,8 +16,13 @@ class SpalshView extends StatefulWidget {
 class _SpalshViewState extends State<SpalshView> {
   @override
   void initState() {
-    delayedNavigate(context);
-
+    bool isOnBoardingVisited =
+        CacheHelper().getData(key: "isOnBoardingVisited") ?? false;
+    if (isOnBoardingVisited) {
+      delayedNavigate(context, '/signUp');
+    } else {
+      delayedNavigate(context, '/onBoarding');
+    }
     super.initState();
   }
 
@@ -30,8 +36,8 @@ class _SpalshViewState extends State<SpalshView> {
   }
 }
 
-void delayedNavigate(BuildContext context) {
+void delayedNavigate(BuildContext context, String path) {
   Future.delayed(const Duration(seconds: 2), () {
-    customNavigateReplace(context, '/onBoarding');
+    customNavigateReplace(context, path);
   });
 }
