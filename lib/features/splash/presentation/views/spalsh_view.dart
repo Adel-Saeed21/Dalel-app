@@ -2,6 +2,7 @@
 
 import 'package:dalel/core/database/cache/cache_helper.dart';
 import 'package:dalel/core/functions/navigation.dart';
+import 'package:dalel/core/services/service_locator.dart';
 import 'package:dalel/core/utils/app_strings.dart';
 import 'package:dalel/core/utils/app_text_style.dart';
 import 'package:flutter/material.dart';
@@ -15,16 +16,21 @@ class SpalshView extends StatefulWidget {
 
 class _SpalshViewState extends State<SpalshView> {
   @override
-  void initState() {
+void initState() {
+  super.initState();
+
+  WidgetsBinding.instance.addPostFrameCallback((_) {
     bool isOnBoardingVisited =
-        CacheHelper().getData(key: "isOnBoardingVisited") ?? false;
+        getIT<CacheHelper>().getData(key: "isOnBoardingVisited") ?? false;
+
     if (isOnBoardingVisited) {
       delayedNavigate(context, '/signUp');
     } else {
       delayedNavigate(context, '/onBoarding');
     }
-    super.initState();
-  }
+  });
+}
+
 
   @override
   Widget build(BuildContext context) {

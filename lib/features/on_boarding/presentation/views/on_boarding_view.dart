@@ -1,4 +1,5 @@
 import 'package:dalel/core/database/cache/cache_helper.dart';
+import 'package:dalel/core/services/service_locator.dart';
 import 'package:dalel/core/utils/app_strings.dart';
 import 'package:dalel/core/widgets/custom_button.dart';
 import 'package:dalel/features/on_boarding/data/models/on_boarding_model.dart';
@@ -32,7 +33,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                   ? const SizedBox()
                   : CustomNavBar(
                     onPressed: () {
-                      CacheHelper().saveData(
+                      getIT<CacheHelper>().saveData(
                         key: "isOnBoardingVisited",
                         value: true,
                       );

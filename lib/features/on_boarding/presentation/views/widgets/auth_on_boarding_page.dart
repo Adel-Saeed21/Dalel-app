@@ -1,8 +1,7 @@
-import 'package:dalel/core/functions/spacing.dart';
+import 'package:dalel/core/functions/navigation.dart';
 import 'package:dalel/core/utils/app_colors.dart';
 import 'package:dalel/core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AuthOnBoardingPage extends StatelessWidget {
   const AuthOnBoardingPage({super.key});
@@ -25,6 +24,7 @@ class AuthOnBoardingPage extends StatelessWidget {
           text: "Sign up",
           color: AppColors.primaryColor,
           onPressed: () {
+            customNavigateReplace(context, "/signUp");
             debugPrint("Sign In pressed!");
           },
         ),

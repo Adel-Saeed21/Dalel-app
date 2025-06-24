@@ -1,11 +1,13 @@
 import 'package:dalel/core/database/cache/cache_helper.dart';
+import 'package:dalel/core/services/service_locator.dart';
 import 'package:dalel/core/utils/app_colors.dart';
 import 'package:dalel/core/utils/app_route.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await CacheHelper().init();
+  setUpServiceLocator();
+  await getIT<CacheHelper>().init();
   runApp(const MyApp());
 }
 
