@@ -2,9 +2,7 @@ import 'package:dalel/core/functions/spacing.dart';
 import 'package:dalel/core/utils/app_colors.dart';
 import 'package:dalel/core/utils/app_strings.dart';
 import 'package:dalel/core/utils/app_text_style.dart';
-import 'package:dalel/core/widgets/custom_button.dart';
-import 'package:dalel/features/auth/presentation/widgets/custom_text_field.dart';
-import 'package:dalel/features/auth/presentation/widgets/terms_And_condition.dart';
+import 'package:dalel/features/auth/presentation/widgets/custom_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -36,53 +34,10 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                 ),
               ),
-              SliverToBoxAdapter(
-                child: CustomTextField(
-                  labelText: AppStrings.fristName,
-                  labelTextStyle: AppTextStyle.pacifico500style18Grey,
-                  borderRadius: 16,
-                ),
+             const SliverToBoxAdapter(
+                child:CustomForm()
               ),
-              SliverToBoxAdapter(
-                child: CustomTextField(
-                  labelText: AppStrings.lastName,
-                  labelTextStyle: AppTextStyle.pacifico500style18Grey,
-                  borderRadius: 16,
-                ),
-              ),
-              SliverToBoxAdapter(
-                child: CustomTextField(
-                  labelText: AppStrings.emailAddress,
-                  labelTextStyle: AppTextStyle.pacifico500style18Grey,
-                  borderRadius: 16,
-                ),
-              ),
-
-              SliverToBoxAdapter(
-                child: CustomTextField(
-                  labelText: AppStrings.password,
-                  labelTextStyle: AppTextStyle.pacifico500style18Grey,
-                  borderRadius: 16,
-                  suffixIcon: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        isSecure = !isSecure;
-                      });
-                    },
-                    child:
-                        isSecure
-                            ? const Icon(Icons.visibility_off)
-                            : const Icon(Icons.visibility),
-                  ),
-                  isObscure: isSecure,
-                ),
-              ),
-              const SliverToBoxAdapter(child: TermsAndConditoins()),
-              SliverToBoxAdapter(child: verticalSpace(88.h)),
-
-              SliverToBoxAdapter(
-                child: CustomButton(text: "Register", onPressed: () {}),
-              ),
+     
               SliverToBoxAdapter(child: verticalSpace(20.h)),
               const SliverToBoxAdapter(
                 child: Align(

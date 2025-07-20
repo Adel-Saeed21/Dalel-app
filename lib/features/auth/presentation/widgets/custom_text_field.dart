@@ -11,7 +11,7 @@ class CustomTextField extends StatelessWidget {
     this.inputTextStyle,
     required this.borderRadius,
     this.isObscure,
-    this.suffixIcon,
+    this.suffixIcon, this.onChanged, this.onSubmitted,
   });
 
   final Color? focusBorderColor;
@@ -22,12 +22,16 @@ class CustomTextField extends StatelessWidget {
   final TextStyle? inputTextStyle;
   final bool? isObscure;
   final Widget? suffixIcon;
+  final Function(String)? onChanged;
+    final Function(String)? onSubmitted;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(right: 8.0, left: 8, top: 24),
-      child: TextField(
+      child: TextFormField(
+        onChanged: onChanged,
+        onFieldSubmitted: onSubmitted,
         decoration: InputDecoration(
           enabledBorder: _buildBorder(
             borderRadius,

@@ -1,11 +1,10 @@
+import 'package:dalel/app/dalel_app.dart';
 import 'package:dalel/core/database/cache/cache_helper.dart';
+import 'package:dalel/core/functions/check_state_auth.dart';
 import 'package:dalel/core/services/service_locator.dart';
-import 'package:dalel/core/utils/app_colors.dart';
-import 'package:dalel/core/utils/app_route.dart';
 import 'package:dalel/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,25 +13,9 @@ void main() async {
   await Firebase.initializeApp(
   options: DefaultFirebaseOptions.currentPlatform,
 );
-  runApp(const MyApp());
+checkStateAuth();
+  runApp(const DalelApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(375, 812), // حسب التصميم بتاعك (مثلاً Figma)
-      minTextAdapt: true,
-      splitScreenMode: true,
-      builder: (context, child) {
-        return MaterialApp.router(
-          theme: ThemeData(scaffoldBackgroundColor: AppColors.offWhite),
-          debugShowCheckedModeBanner: false,
-          routerConfig: route,
-        );
-      },
-    );
-  }
-}
+
