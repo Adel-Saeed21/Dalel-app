@@ -20,18 +20,23 @@ class CustomForm extends StatelessWidget {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is SignUpSuccess) {
-        } else {
-          if (state is SignUpFailure) {
-            Fluttertoast.showToast(
-        msg:state.message.toString(),
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.CENTER,
-        timeInSecForIosWeb: 1,
-        backgroundColor: Colors.red,
-        textColor: Colors.white,
-        fontSize: 16.0
-    );
-          }
+          Fluttertoast.showToast(
+            msg: "Registration successful!",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            backgroundColor: Colors.green,
+            textColor: Colors.white,
+            fontSize: 16.0,
+          );
+        } else if (state is SignUpFailure) {
+          Fluttertoast.showToast(
+            msg: state.message,
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0,
+          );
         }
       },
       builder: (context, state) {
@@ -93,7 +98,7 @@ class CustomForm extends StatelessWidget {
                     onPressed: () {
                       BlocProvider.of<AuthCubit>(
                         context,
-                      ).singUpWithEmailAndPassword();
+                      ).signUpWithEmailAndPassword();
                     },
                   ),
             ],
