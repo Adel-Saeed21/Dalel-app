@@ -11,3 +11,4 @@ final class SignUpFailure extends AuthState {
   SignUpFailure(this.message);
 }
 final class Signuploading extends AuthState {}
+final class ObscurePasswordTextUpdateState extends AuthState {}

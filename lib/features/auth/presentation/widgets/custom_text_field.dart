@@ -7,7 +7,7 @@ class CustomTextField extends StatelessWidget {
     this.focusBorderColor,
     this.enabledBorderColor,
     required this.labelText,
-    required this.labelTextStyle,
+     this.labelTextStyle,
     this.inputTextStyle,
     required this.borderRadius,
     this.isObscure,
@@ -18,7 +18,7 @@ class CustomTextField extends StatelessWidget {
   final Color? enabledBorderColor;
   final double borderRadius;
   final String labelText;
-  final TextStyle labelTextStyle;
+  final TextStyle? labelTextStyle;
   final TextStyle? inputTextStyle;
   final bool? isObscure;
   final Widget? suffixIcon;

@@ -8,7 +8,7 @@ class AuthCubit extends Cubit<AuthState> {
   late String? lastName;
   late String? emailAddress;
   late String? password;
-
+  bool? obscurePasswordTextValue = true;
   singUpWithEmailAndPassword() async {
     try {
       emit(state is Signuploading ? state : Signuploading());
@@ -28,5 +28,14 @@ class AuthCubit extends Cubit<AuthState> {
     } catch (e) {
       print(e);
     }
+  }
+
+   void obscurePasswordText() {
+    if (obscurePasswordTextValue == true) {
+      obscurePasswordTextValue = false;
+    } else {
+      obscurePasswordTextValue = true;
+    }
+    emit(ObscurePasswordTextUpdateState());
   }
 }
